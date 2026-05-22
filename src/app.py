@@ -22,8 +22,11 @@ import numpy as np
 import torch
 
 # Configure PyTorch to utilize all 11 CPU cores for accelerated inference
-torch.set_num_threads(11)
-torch.set_num_interop_threads(11)
+try:
+    torch.set_num_threads(11)
+    torch.set_num_interop_threads(11)
+except RuntimeError:
+    pass
 
 import plotly.graph_objects as go
 import plotly.express as px

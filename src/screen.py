@@ -8,8 +8,11 @@ os.environ["NUMEXPR_NUM_THREADS"] = "11"
 
 import torch
 # Configure PyTorch to utilize all 11 CPU cores for accelerated virtual screening
-torch.set_num_threads(11)
-torch.set_num_interop_threads(11)
+try:
+    torch.set_num_threads(11)
+    torch.set_num_interop_threads(11)
+except RuntimeError:
+    pass
 
 import pandas as pd
 import numpy as np
