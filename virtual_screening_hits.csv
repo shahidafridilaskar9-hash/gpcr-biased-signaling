@@ -1,0 +1,11 @@
+Compound Name,Chemical Category,SMILES String,Predicted pKd,Est. Kd (nM),G-Protein Bias Prob,Balanced Prob,β-Arrestin Bias Prob,Selectivity Score
+Loxapine,Tricyclic Antipsychotic,CN1CCN(CC1)C2=NC3=CC=CC=C3OC4=C2C=C(C=C4)Cl,7.06,87.83,32.4,67.5,0.1,2.288
+Novel_Analog_Y2,Synthetic Phenol-tryptamine,CC(C)NCCC1=CNC2=C1C=C(O)C=C2,7.01,97.84,31.7,68.2,0.1,2.224
+Mescaline,Phenethylamine,COCc1cc(OC)c(OC)c(OC)c1,7.02,94.65,31.6,68.3,0.1,2.22
+Bromocriptine,Ergoline Agonist,CC(C)C[C@H]1C(=O)N2CCC[C@H]2[C@]3(N1C(=O)[C@](O3)(C(C)C)NC(=O)[C@H]4CN([C@@H]5CC6=C(NC7=CC=CC(=C67)C5=C4)Br)C)O,6.95,113.05,31.3,68.6,0.0,2.177
+DMT,Tryptamine Derivative,CN(C)CCC1=CNC2=CC=CC=C12,6.93,116.23,31.4,68.6,0.0,2.176
+Psilocybin,Psychedelic Alkaloid,COP(=O)(O)OC1=CC=CC2=C1C(CCN(C)C)=CN2,6.93,117.29,31.3,68.6,0.0,2.173
+Lisuride,Ergoline Class,CCN(CC)C(=O)NC1CN(C)C2Cc3c[nH]c4ccc(C2=C1)c34,8.97,1.08,22.4,6.9,70.7,2.011
+Novel_Analog_X1,Synthetic Tryptamine,CCN(CC)C(=O)CC1=CNC2=C1C=C(OC)C=C2,8.97,1.07,21.4,6.3,72.3,1.916
+25I-NBOMe,Phenethylamine Agonist,COC1=C(C=C(C(=C1)I)CCNCC2=CC=CC=C2OC)OC,8.97,1.08,21.3,6.3,72.5,1.906
+Ketamine,Aesthetic Dissociative,CNC1(CCCCC1=O)C2=CC=CC=C2Cl,9.0,0.99,21.1,6.2,72.7,1.904

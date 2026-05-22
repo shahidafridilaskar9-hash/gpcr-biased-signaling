@@ -1,0 +1,63 @@
+{
+  "RandomForest": {
+    "regression": {
+      "RMSE": 0.82,
+      "MAE": 0.6119,
+      "R2": 0.5737,
+      "Pearson_r": 0.7584,
+      "Pearson_p": 0.0,
+      "Spearman_rho": 0.7554,
+      "Spearman_p": 0.0
+    },
+    "classification": null
+  },
+  "XGBoost": {
+    "regression": {
+      "RMSE": 0.7755,
+      "MAE": 0.5749,
+      "R2": 0.6188,
+      "Pearson_r": 0.7875000238418579,
+      "Pearson_p": 0.0,
+      "Spearman_rho": 0.7856,
+      "Spearman_p": 0.0
+    }
+  },
+  "LOTO": {
+    "DRD2_HUMAN": {
+      "RMSE": 1.0399,
+      "MAE": 0.7876,
+      "R2": -0.2702,
+      "Pearson_r": 0.0572,
+      "Pearson_p": 0.295534,
+      "Spearman_rho": 0.1318,
+      "Spearman_p": 0.015605
+    },
+    "OPRM1_HUMAN": {
+      "RMSE": 1.3469,
+      "MAE": 1.1815,
+      "R2": 0.0387,
+      "Pearson_r": 0.1985,
+      "Pearson_p": 9.8e-05,
+      "Spearman_rho": 0.2678,
+      "Spearman_p": 0.0
+    },
+    "ADRB2_HUMAN": {
+      "RMSE": 1.3024,
+      "MAE": 1.0975,
+      "R2": -0.7117,
+      "Pearson_r": 0.1585,
+      "Pearson_p": 0.001942,
+      "Spearman_rho": 0.0867,
+      "Spearman_p": 0.091578
+    },
+    "5HT2A_HUMAN": {
+      "RMSE": 1.5009,
+      "MAE": 1.1874,
+      "R2": -0.5066,
+      "Pearson_r": 0.2061,
+      "Pearson_p": 0.000138,
+      "Spearman_rho": 0.2742,
+      "Spearman_p": 0.0
+    }
+  }
+}
