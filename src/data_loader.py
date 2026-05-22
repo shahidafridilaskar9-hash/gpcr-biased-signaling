@@ -90,6 +90,8 @@ class LocalProteinTokenizer:
 
 def smiles_to_graph_data(smiles, max_atoms=64):
     """Converts a SMILES string into node features and an adjacency matrix using RDKit."""
+    if isinstance(smiles, str):
+        smiles = "".join(smiles.strip().strip("'\"").split())
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         # Return empty representations

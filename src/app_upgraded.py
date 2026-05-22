@@ -150,7 +150,10 @@ with tab1:
         default_smiles = preset_ligands[preset_selection] if preset_selection != "Custom SMILES" else "NCCc1c[nH]c2ccc(O)cc12"
         smiles_input = st.text_input("SMILES String:", value=default_smiles, key="t1_smiles")
         
-        mol = Chem.MolFromSmiles(smiles_input)
+        # Robustly clean SMILES input (remove leading/trailing/internal whitespace and surrounding quotes)
+        clean_smiles_input = "".join(smiles_input.strip().strip("'\"").split()) if smiles_input else ""
+        
+        mol = Chem.MolFromSmiles(clean_smiles_input)
         if mol:
             img = Draw.MolToImage(mol, size=(320, 200), fitImage=True)
             img_buffer = io.BytesIO()
@@ -171,7 +174,7 @@ with tab1:
                     # Process inputs
                     tokenizer = LocalProteinTokenizer()
                     seq_tokens = tokenizer.tokenize(seq_input, max_len=1024).unsqueeze(0)
-                    feats, adj = smiles_to_graph_data(smiles_input, max_atoms=64)
+                    feats, adj = smiles_to_graph_data(clean_smiles_input, max_atoms=64)
                     feats = feats.unsqueeze(0)
                     adj = adj.unsqueeze(0)
                     
@@ -251,7 +254,8 @@ with tab2:
         
     with col_t2_2:
         st.markdown('<div class="card"><h4>Atom Key Guide</h4>', unsafe_allow_html=True)
-        mol_t2 = Chem.MolFromSmiles(smiles_t2)
+        clean_smiles_t2 = "".join(smiles_t2.strip().strip("'\"").split()) if smiles_t2 else ""
+        mol_t2 = Chem.MolFromSmiles(clean_smiles_t2)
         if mol_t2:
             # Render index tags on atoms
             for atom in mol_t2.GetAtoms():
@@ -267,7 +271,7 @@ with tab2:
         
         with st.spinner("Extracting attention matrices..."):
             try:
-                attn_data = get_attention_maps(model_path, smiles_t2, gpcr_t2)
+                attn_data = get_attention_maps(model_path, clean_smiles_t2, gpcr_t2)
                 
                 c_attn = attn_data["cross_attn"] # (atoms, residues)
                 atoms = attn_data["atom_symbols"]
