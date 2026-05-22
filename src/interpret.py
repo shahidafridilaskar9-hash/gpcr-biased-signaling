@@ -32,7 +32,7 @@ from rdkit.Chem import Draw
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.model import GPCRBiasedSignalingModel
-from src.data_loader import smiles_to_graph_data, LocalProteinTokenizer, GPCR_SEQUENCES
+from src.data_loader import smiles_to_graph_data, LocalProteinTokenizer, GPCR_SEQUENCES, robust_clean_smiles
 
 def get_attention_maps(model_path, smiles, gpcr_key, max_seq_len=1024, max_atoms=64):
     """Load model, run prediction, and extract all internal attention weights.
@@ -44,8 +44,7 @@ def get_attention_maps(model_path, smiles, gpcr_key, max_seq_len=1024, max_atoms
       - cross_attention: np.ndarray shape (num_nodes, seq_len)
       - atom_symbols: list of atom symbols present in the compound
     """
-    if isinstance(smiles, str):
-        smiles = "".join(smiles.strip().strip("'\"").split())
+    smiles = robust_clean_smiles(smiles)
     # 1. Load Model
     model = GPCRBiasedSignalingModel(d_model=128)
     if os.path.exists(model_path):

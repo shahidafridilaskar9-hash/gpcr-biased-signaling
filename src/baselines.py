@@ -31,13 +31,15 @@ from sklearn.metrics import (
 )
 from rdkit import Chem
 from rdkit.Chem import AllChem
+from src.data_loader import robust_clean_smiles
 
 
 # ─── Fingerprint Featurization ───────────────────────────────────────────────
 
 def smiles_to_fingerprint(smiles, radius=2, n_bits=2048):
     """Convert SMILES to Morgan fingerprint (ECFP4) as a numpy array."""
-    mol = Chem.MolFromSmiles(smiles)
+    clean_s = robust_clean_smiles(smiles)
+    mol = Chem.MolFromSmiles(clean_s) if clean_s else None
     if mol is None:
         return np.zeros(n_bits, dtype=np.float32)
     fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius, nBits=n_bits)

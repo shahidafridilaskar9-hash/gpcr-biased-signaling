@@ -88,11 +88,54 @@ class LocalProteinTokenizer:
             tokens = tokens + [self.vocab['<pad>']] * (max_len - len(tokens))
         return torch.tensor(tokens, dtype=torch.long)
 
+def robust_clean_smiles(smiles):
+    """Robustly cleans a SMILES string input. Handles common copy-paste errors,
+    curly quotes, spaces, tabs, standard SMILES file formatting (SMILES followed by metadata/name),
+    and prefixes (e.g. 'SMILES:', 'structure:', 'smiles=').
+    """
+    if smiles is None or (isinstance(smiles, float) and np.isnan(smiles)):
+        return ""
+    if not isinstance(smiles, str):
+        smiles = str(smiles)
+        
+    s = smiles.strip().strip("'\"`“”‘’")
+    
+    # Remove common prefix descriptors
+    for prefix in ["smiles:", "smiles=", "structure:", "structure=", "compound:", "compound="]:
+        if s.lower().startswith(prefix):
+            s = s[len(prefix):].strip().strip("'\"`“”‘’")
+            break
+            
+    # Handle multiple columns (space or tab separated) where SMILES is the first token.
+    tokens = s.split()
+    if not tokens:
+        return ""
+        
+    first_token = tokens[0].strip().strip("'\"`“”‘’")
+    try:
+        m = Chem.MolFromSmiles(first_token)
+        if m is not None:
+            return first_token
+    except Exception:
+        pass
+        
+    # If the first token isn't a valid SMILES, check other tokens
+    for tok in tokens[1:]:
+        t_clean = tok.strip().strip("'\"`“”‘’")
+        try:
+            m = Chem.MolFromSmiles(t_clean)
+            if m is not None:
+                return t_clean
+        except Exception:
+            pass
+            
+    # Fallback to the first token stripped
+    return first_token
+
 def smiles_to_graph_data(smiles, max_atoms=64):
     """Converts a SMILES string into node features and an adjacency matrix using RDKit."""
-    if isinstance(smiles, str):
-        smiles = "".join(smiles.strip().strip("'\"").split())
-    mol = Chem.MolFromSmiles(smiles)
+    clean_s = robust_clean_smiles(smiles)
+    mol = Chem.MolFromSmiles(clean_s) if clean_s else None
     if mol is None:
         # Return empty representations
         return torch.zeros((max_atoms, 10)), torch.zeros((max_atoms, max_atoms))
@@ -187,11 +230,12 @@ def get_dataloaders(batch_size=4, split_ratio=0.8, csv_path="data/chembl_gpcr_bi
         # Check that we only load records with valid SMILES
         for _, row in df.iterrows():
             # Validate SMILES string before passing to training
-            mol = Chem.MolFromSmiles(row["smiles"])
+            clean_s = robust_clean_smiles(row["smiles"])
+            mol = Chem.MolFromSmiles(clean_s) if clean_s else None
             if mol is not None:
                 data_list.append({
                     "name": str(row["name"]),
-                    "smiles": str(row["smiles"]),
+                    "smiles": clean_s,
                     "gpcr": str(row["gpcr"]),
                     "pkd": float(row["pkd"]),
                     "bias": str(row["bias"])

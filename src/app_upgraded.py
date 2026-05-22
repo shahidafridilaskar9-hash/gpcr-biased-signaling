@@ -23,7 +23,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.model import GPCRBiasedSignalingModel
-from src.data_loader import GPCR_SEQUENCES, smiles_to_graph_data, LocalProteinTokenizer
+from src.data_loader import GPCR_SEQUENCES, smiles_to_graph_data, LocalProteinTokenizer, robust_clean_smiles
 from src.interpret import get_attention_maps
 
 # Set premium dark-themed layout
@@ -151,9 +151,9 @@ with tab1:
         smiles_input = st.text_input("SMILES String:", value=default_smiles, key="t1_smiles")
         
         # Robustly clean SMILES input (remove leading/trailing/internal whitespace and surrounding quotes)
-        clean_smiles_input = "".join(smiles_input.strip().strip("'\"").split()) if smiles_input else ""
+        clean_smiles_input = robust_clean_smiles(smiles_input)
         
-        mol = Chem.MolFromSmiles(clean_smiles_input)
+        mol = Chem.MolFromSmiles(clean_smiles_input) if clean_smiles_input else None
         if mol:
             img = Draw.MolToImage(mol, size=(320, 200), fitImage=True)
             img_buffer = io.BytesIO()
@@ -254,8 +254,8 @@ with tab2:
         
     with col_t2_2:
         st.markdown('<div class="card"><h4>Atom Key Guide</h4>', unsafe_allow_html=True)
-        clean_smiles_t2 = "".join(smiles_t2.strip().strip("'\"").split()) if smiles_t2 else ""
-        mol_t2 = Chem.MolFromSmiles(clean_smiles_t2)
+        clean_smiles_t2 = robust_clean_smiles(smiles_t2)
+        mol_t2 = Chem.MolFromSmiles(clean_smiles_t2) if clean_smiles_t2 else None
         if mol_t2:
             # Render index tags on atoms
             for atom in mol_t2.GetAtoms():
