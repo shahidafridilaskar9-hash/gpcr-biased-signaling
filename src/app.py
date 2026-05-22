@@ -151,7 +151,7 @@ with tab1:
         
         st.markdown('<div class="card"><h3>2. Ligand Chemistry</h3>', unsafe_allow_html=True)
         preset_ligands = {
-            "LSD": "CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34",
+            "LSD": "CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C",
             "TRV130 (Oliceridine)": "CC(C)CN1CCC2(CC1)CCO[C@@H]2CNCC3=CC=C(S3)C4=CC=NC=C4",
             "Fentanyl": "CCC(=O)N(C1CCN(CC1)CCC2=CC=CC=C2)C3=CC=CC=C3",
             "Morphine": "CN1CC[C@]23c4c5ccc(O)c4O[C@H]2[C@@H](O)C=C[C@H]3[C@H]1C5"
@@ -265,7 +265,7 @@ with tab2:
     with col_t2_1:
         st.markdown('<div class="card"><h4>Configure Target Pairing</h4>', unsafe_allow_html=True)
         gpcr_t2 = st.selectbox("Select Receptor:", list(GPCR_SEQUENCES.keys()), key="t2_gpcr")
-        smiles_t2 = st.text_input("Ligand SMILES:", value="CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34", key="t2_smiles")
+        smiles_t2 = st.text_input("Ligand SMILES:", value="CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C", key="t2_smiles")
         st.markdown('</div>', unsafe_allow_html=True)
         
     with col_t2_2:

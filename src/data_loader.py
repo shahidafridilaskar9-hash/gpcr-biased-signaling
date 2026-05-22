@@ -45,7 +45,7 @@ GPCR_SEQUENCES = {
 # Curated Ligands with SMILES, Target GPCR, known binding pKd (-log10 of Kd), and Functional Bias
 LIGAND_DATA = [
     # 5HT2A Ligands
-    {"name": "LSD", "smiles": "CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34", "gpcr": "5HT2A_HUMAN", "pkd": 9.1, "bias": "G-protein"},
+    {"name": "LSD", "smiles": "CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C", "gpcr": "5HT2A_HUMAN", "pkd": 9.1, "bias": "G-protein"},
     {"name": "Serotonin", "smiles": "NCCc1c[nH]c2ccc(O)cc12", "gpcr": "5HT2A_HUMAN", "pkd": 7.5, "bias": "Balanced"},
     {"name": "Risperidone", "smiles": "CC1=C(C(=O)N2CCCCC2=N1)CCN3CCC(CC3)C4=NOC5=C4C=CC(=C5)F", "gpcr": "5HT2A_HUMAN", "pkd": 8.8, "bias": "Arrestin"},
     {"name": "Clozapine", "smiles": "CN1CCN(CC1)C2=NC3=CC=CC=C3NC4=C2C=C(C=C4)Cl", "gpcr": "5HT2A_HUMAN", "pkd": 7.2, "bias": "Balanced"},
@@ -64,7 +64,7 @@ LIGAND_DATA = [
     # ADRB2 (Beta-2) Ligands
     {"name": "Epinephrine", "smiles": "CNC[C@@H](O)c1ccc(O)c(O)c1", "gpcr": "ADRB2_HUMAN", "pkd": 6.5, "bias": "Balanced"},
     {"name": "Albuterol", "smiles": "CC(C)(C)NCC(O)c1ccc(O)c(CO)c1", "gpcr": "ADRB2_HUMAN", "pkd": 7.0, "bias": "G-protein"},
-    {"name": "Carvedilol", "smiles": "CC1=CC=CC=C1OCC(O)CNCCOc2ccc3c(c2)c4ccccc4n3", "gpcr": "ADRB2_HUMAN", "pkd": 8.9, "bias": "Arrestin"}
+    {"name": "Carvedilol", "smiles": "CC1=CC=CC=C1OCC(O)CNCCOc2ccc3[nH]c4ccccc4c3c2", "gpcr": "ADRB2_HUMAN", "pkd": 8.9, "bias": "Arrestin"}
 ]
 
 # Map Bias Labels to Integers

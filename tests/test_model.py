@@ -88,10 +88,10 @@ def test_gradient_step():
 def test_robust_clean_smiles():
     from src.data_loader import robust_clean_smiles
     # Test curly quotes removal
-    assert robust_clean_smiles("“CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34”") == "CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34"
+    assert robust_clean_smiles("“CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C”") == "CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C"
     # Test spaces/tabs and column parsing (first column is smiles)
-    assert robust_clean_smiles("CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34\tLSD") == "CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34"
-    assert robust_clean_smiles("  CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34   ") == "CCN(CC)C(=O)[C@@H]1CN(C)[C@@H]2Cc3c[nH]c4ccc(C2=C1)c34"
+    assert robust_clean_smiles("CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C\tLSD") == "CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C"
+    assert robust_clean_smiles("  CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C   ") == "CCN(CC)C(=O)[C@H]1CN([C@@H]2CC3=CNC4=CC=CC(=C34)C2=C1)C"
     # Test prefixes
     assert robust_clean_smiles("SMILES: c1ccccc1") == "c1ccccc1"
     assert robust_clean_smiles("smiles=c1ccccc1") == "c1ccccc1"

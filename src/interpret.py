@@ -71,7 +71,6 @@ def get_attention_maps(model_path, smiles, gpcr_key, max_seq_len=1024, max_atoms
     adj_t = adj_matrix.unsqueeze(0)
     
     with torch.no_grad():
-        pred_pkd, pred_bias, attn_dict = model(feats_t, feats_t, feats_t) # Placeholder call signature fallback
         # Let's use the actual forward pass arguments
         pred_pkd, pred_bias, attn_dict = model(seq_t, feats_t, adj_t, return_attention=True)
 
