@@ -93,3 +93,25 @@ Optimized specifically for high affinity ($pK_d$) combined with a selective G-pr
 ## 👥 Authors & Academic Usage
 
 Developed as a highly tailorable portfolio prototype for advanced research in **computational biology, structural bioinformatics, and machine learning pharmacology**. Perfect as a foundation for postgraduate researcher applications and academic contributions in cellular biophysics and biomolecular dynamics.
+
+---
+
+## 📚 References & Bibliography
+
+If utilizing this codebase, methodologies, or structural architecture in academic proposals, publications, or research, please cite the following foundational works:
+
+### 1. Protein Sequence & Evolutionary Representations (ESM-2)
+*   Lin, Z., Akin, H., Rao, R., Hie, B., Zhu, Z., Lu, W., Smetanin, N., Verkuil, R., Kabeli, O., Shmueli, Y., dos Santos Costa, A., Fazel-Zarandi, M., Saraf, S., McPartlon, M., Zhou, J., Yi, W., Lahnemann, J., Fang, J., Grishin, A. L., ... & Rives, A. (2023). **Evolutionary-scale prediction of atomic-level protein structure with a language model.** *Science*, 379(6637), 1123-1130. [https://doi.org/10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574)
+
+### 2. Graph Neural Architectures (Graph Attention Networks - GAT)
+*   Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., & Bengio, Y. (2018). **Graph Attention Networks.** *International Conference on Learning Representations (ICLR)*. [https://arxiv.org/abs/1710.10903](https://arxiv.org/abs/1710.10903)
+
+### 3. Biological Context (Biased Agonism & Functional Selectivity)
+*   Urban, J. D., Clarke, W. P., von Zastrow, M., Nichols, D. E., Kobilka, B., Mailman, R. B., ... & Kenakin, T. (2007). **Functional selectivity (biased agonism): a new paradigm for G protein-coupled receptors.** *Journal of Pharmacology and Experimental Therapeutics*, 320(1), 1-13. [https://doi.org/10.1124/jpet.106.111013](https://doi.org/10.1124/jpet.106.111013)
+*   Roth, B. L. (2016). **DREADDs for Neuroscientists.** *Neuron*, 89(4), 683-694. [https://doi.org/10.1016/j.neuron.2016.01.040](https://doi.org/10.1016/j.neuron.2016.01.040)
+
+### 4. Public Chemical Bioassays Database (ChEMBL)
+*   Mendez, D., Gaulton, A., Bento, A. P., Chambers, J., De Veij, M., Félix, E., ... & Leach, A. R. (2019). **ChEMBL: towards direct deposition of bioassay data.** *Nucleic Acids Research*, 47(D1), D930-D940. [https://doi.org/10.1093/nar/gky1075](https://doi.org/10.1093/nar/gky1075)
+
+### 5. Cheminformatics Engines (RDKit)
+*   Landrum, G. (2006). **RDKit: Open-source cheminformatics.** [https://www.rdkit.org](https://www.rdkit.org)
